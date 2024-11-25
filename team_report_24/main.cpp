@@ -3,39 +3,33 @@
 //
 #include "trafficFlow.h"
 #include "csvLoader.h"
+#include "sortAlgorithm/quickSort.h"
+#include "sortAlgorithm/mergeSort.h"
+#include "sortAlgorithm/heapSort.h"
+#include "sortAlgorithm/greedySort.h"
+#include <chrono>
 
 
-int main() {
-    string filename = "C:/workspace/traffic_data_set.csv"; // CSV ÆÄÀÏ °æ·Î ¼³Á¤
+vector <TrafficFlow> loadCsvData(const string& filename)
+{
+    auto load_start_time = chrono::high_resolution_clock::now();
     csvLoader loader(filename);
     vector<TrafficFlow> flows = loader.load();
+    cout << "total flows : " << flows.size() << endl;
+    auto load_end_time = chrono::high_resolution_clock::now();
 
-    int count = 0;
+    cout << "CSV íŒŒì¼ ë¡œë“œ ì‹œê°„: "
+         << chrono::duration_cast<chrono::milliseconds>(load_end_time - load_start_time).count()
+         << "ms\n";
 
-    // TrafficFlow µ¥ÀÌÅÍ Ãâ·Â
-    for (const auto& flow : flows) {
-       if (count == 2) break;
-        cout << "Flow ID: " << flow.flowID
-             << ", Source IP: " << flow.sourceIP
-             << ", Source Port: " << flow.sourcePort
-             << ", Destination IP: " << flow.destinationIP
-             << ", Destination Port: " << flow.destinationPort
-             << ", Protocol: " << flow.protocol
-             << ", Timestamp: " << flow.timestamp
-             << ", Flow Duration: " << flow.flowDuration
-             << ", Total Forward Packets: " << flow.totalFwdPackets
-             << ", Total Backward Packets: " << flow.totalBackwardPackets
-             << ", Flow Bytes per Second: " << flow.flowBytesPerSec
-             << ", Flow Packets per Second: " << flow.flowPacketsPerSec
-             << ", Flow IAT Mean: " << flow.flowIATMean
-             << ", Label: " << flow.label
-             << ", Total Packets: " << flow.totalPackets
-             << ", Protocol Name: " << flow.protocolName
-             << "\n\n" << endl;
-        count++;
-    }
+    return flows;
+}
 
-    cout << "Total Flow Count: " << count << endl;
+int main() {
+    string filename = "/workspace/CPP_LoadBalancing_algorithm/team_report_24/traffic_data_set.csv"; // CSV ???? ??? ????
+
+    // CSV ë°ì´í„° ë¡œë“œ
+    vector<TrafficFlow> flows = loadCsvData(filename);
 
     return 0;
 }
