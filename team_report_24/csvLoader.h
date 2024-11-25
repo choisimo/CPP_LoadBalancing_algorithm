@@ -13,7 +13,7 @@ public:
         string line, cell;
         vector<TrafficFlow> flows;
 
-        // header에서 column 추출
+        // header???? column ????
         getline(file, line);
         stringstream headerStream(line);
         vector<string> headers;
@@ -35,7 +35,7 @@ public:
                 row.push_back(cell);
             }
 
-            // TrafficFlow 구조체 초기화
+            // TrafficFlow ????체 ????
             TrafficFlow flow;
 
             flow.flowID = row[header_map["Flow.ID"]];
@@ -46,7 +46,7 @@ public:
             flow.protocol = stoi(row[header_map["Protocol"]]);
             flow.timestamp = row[header_map["Timestamp"]];
 
-            // 예외 처리 포함한 흐름 지속 시간
+            //
             try {
                 flow.flowDuration = stod(row[header_map["Flow.Duration"]]);
             } catch (const std::invalid_argument& e) {
@@ -56,7 +56,7 @@ public:
             flow.totalFwdPackets = stoi(row[header_map["Total.Fwd.Packets"]]);
             flow.totalBackwardPackets = stoi(row[header_map["Total.Backward.Packets"]]);
 
-            // 초당 바이트와 패킷 전송량
+            // ??? ??????? ??? ?????
             try {
                 flow.flowBytesPerSec = stod(row[header_map["Flow.Bytes.s"]]);
             } catch (const std::invalid_argument& e) {
@@ -69,7 +69,7 @@ public:
                 flow.flowPacketsPerSec = 0.0;
             }
 
-            // 패킷 간 평균 간격 예외 처리
+            // ??? ?? ??? ???? ???? 처??
             try {
                 flow.flowIATMean = stod(row[header_map["Flow.IAT.Mean"]]);
             } catch (const std::invalid_argument& e) {
