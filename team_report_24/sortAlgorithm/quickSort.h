@@ -9,7 +9,7 @@ public:
     void sort(std::vector<TrafficFlow>& flows);
 private:
     void quickSort(std::vector<TrafficFlow>& flows, int low, int high);
-    int partition(std::vector<TrafficFlow>& flows, int low, int high);
+    pair<int, int> partition(std::vector<TrafficFlow>& flows, int low, int high);
 };
 
 #endif // QUICKSORT_H
