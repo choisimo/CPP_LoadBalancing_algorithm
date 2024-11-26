@@ -42,6 +42,6 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 mdkir build
 cd build
 cmake ..
-make
+cmake --build .
 ./CPP_LoadBalancing_algorithm
 ```
