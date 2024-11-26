@@ -106,6 +106,6 @@ int main() {
     printFlowData(greedySortFlows);
 
     cout << "========================================\n";
-    
+
     return 0;
 }
