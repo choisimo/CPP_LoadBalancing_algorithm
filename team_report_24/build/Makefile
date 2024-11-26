@@ -129,6 +129,30 @@ CPP_LoadBalancing_algorithm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPP_LoadBalancing_algorithm.dir/build.make CMakeFiles/CPP_LoadBalancing_algorithm.dir/build
 .PHONY : CPP_LoadBalancing_algorithm/fast
 
+jsonConverter.o: jsonConverter.cpp.o
+.PHONY : jsonConverter.o
+
+# target to build an object file
+jsonConverter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPP_LoadBalancing_algorithm.dir/build.make CMakeFiles/CPP_LoadBalancing_algorithm.dir/jsonConverter.cpp.o
+.PHONY : jsonConverter.cpp.o
+
+jsonConverter.i: jsonConverter.cpp.i
+.PHONY : jsonConverter.i
+
+# target to preprocess a source file
+jsonConverter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPP_LoadBalancing_algorithm.dir/build.make CMakeFiles/CPP_LoadBalancing_algorithm.dir/jsonConverter.cpp.i
+.PHONY : jsonConverter.cpp.i
+
+jsonConverter.s: jsonConverter.cpp.s
+.PHONY : jsonConverter.s
+
+# target to generate assembly for a file
+jsonConverter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CPP_LoadBalancing_algorithm.dir/build.make CMakeFiles/CPP_LoadBalancing_algorithm.dir/jsonConverter.cpp.s
+.PHONY : jsonConverter.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -258,6 +282,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... CPP_LoadBalancing_algorithm"
+	@echo "... jsonConverter.o"
+	@echo "... jsonConverter.i"
+	@echo "... jsonConverter.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

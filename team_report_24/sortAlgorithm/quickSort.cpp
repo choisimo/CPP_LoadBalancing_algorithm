@@ -32,10 +32,13 @@ void QuickSort::sort(std::vector<TrafficFlow>& flows) {
         if (low < high) {
             auto [lt, gt] = partition(flows, low, high);
 
-            std::cout << "[QuickSort] Partitioned ranges: "
-                      << "less-than pivot [" << low << ", " << lt - 1 << "], "
-                      << "greater-than pivot [" << gt + 1 << ", " << high << "]\n";
-
+            // 중요 이벤트만 로그 출력
+            if ((high - low) > 10000 || stack.size() % 100 == 0) {
+                std::cout << "[QuickSort] Partitioned range: low=" << low
+                          << ", high=" << high
+                          << ", less-than pivot [" << low << ", " << lt - 1
+                          << "], greater-than pivot [" << gt + 1 << ", " << high << "]\n";
+            }
             if (low < lt - 1) stack.push({low, lt - 1});
             if (gt + 1 < high) stack.push({gt + 1, high});
         }
@@ -47,14 +50,9 @@ void QuickSort::sort(std::vector<TrafficFlow>& flows) {
 
 void QuickSort::quickSort(std::vector<TrafficFlow>& flows, int low, int high) {
     if (low < high) {
-        std::cout << "[QuickSort] quickSort called with low=" << low << ", high=" << high << "\n";
 
         // 3-way partitioning
         auto [lt, gt] = partition(flows, low, high);
-
-        std::cout << "[QuickSort] Partition done. Ranges: "
-                  << "less-than pivot [" << low << ", " << lt - 1 << "], "
-                  << "greater-than pivot [" << gt + 1 << ", " << high << "]\n";
 
         // Recursive sort on left and right subarrays
         quickSort(flows, low, lt - 1); // Sort less-than pivot
@@ -69,7 +67,12 @@ std::pair<int, int> QuickSort::partition(std::vector<TrafficFlow>& flows, int lo
     std::swap(flows[randomPivotIndex], flows[high]);
 
     double pivot = flows[high].flowBytesPerSec;
-    std::cout << "[QuickSort] Pivot value=" << pivot << "\n";
+
+    // 피벗 값을 주기적으로만 출력
+    if ((high - low) > 10000) {
+        std::cout << "[QuickSort] Pivot value for range [" << low << ", " << high << "] = " << pivot << "\n";
+    }
+
 
     int lt = low;    // Less than pivot
     int gt = high;   // Greater than pivot

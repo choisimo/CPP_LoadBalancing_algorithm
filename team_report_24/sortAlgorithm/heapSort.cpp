@@ -1,6 +1,3 @@
-//
-// Created by nodove on 24. 11. 23.
-//
 #include "heapSort.h"
 #include <chrono>
 #include <iostream>
@@ -11,16 +8,25 @@ void HeapSort::sort(std::vector<TrafficFlow>& flows) {
     auto start_time = std::chrono::high_resolution_clock::now();
     int n = flows.size();
 
+    // 힙 구성 단계
     for (int i = n / 2 - 1; i >= 0; --i) {
-        std::cout << "[HeapSort] Heapifying at index " << i << " during heap construction\n";
+        if (i % 1000 == 0 || i == 0) { // 큰 단계마다 로그 출력
+            std::cout << "[HeapSort] Heapifying at index " << i << " during heap construction\n";
+        }
         heapify(flows, n, i);
     }
 
+    // 정렬 단계
     for (int i = n - 1; i > 0; --i) {
-        std::cout << "[HeapSort] Swapping root (" << flows[0].flowBytesPerSec
-                  << ") with element at index " << i << " (" << flows[i].flowBytesPerSec << ")\n";
+        if (i % 1000 == 0 || i == n - 1 || i == 1) { // 크기 변동의 주요 이벤트만 출력
+            std::cout << "[HeapSort] Swapping root (" << flows[0].flowBytesPerSec
+                      << ") with element at index " << i << " (" << flows[i].flowBytesPerSec << ")\n";
+        }
         std::swap(flows[0], flows[i]);
-        std::cout << "[HeapSort] Heapifying root after swap, size reduced to " << i << "\n";
+
+        if (i % 1000 == 0 || i == 1) {
+            std::cout << "[HeapSort] Heapifying root after swap, size reduced to " << i << "\n";
+        }
         heapify(flows, i, 0);
     }
 
@@ -34,33 +40,25 @@ void HeapSort::heapify(std::vector<TrafficFlow>& flows, int n, int i) {
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
-
-    std::cout << "[HeapSort] Heapifying at index " << i << " with size " << n << "\n";
-    std::cout << "[HeapSort] Current largest: index " << largest
-              << " (" << flows[largest].flowBytesPerSec << ")\n";
-
+    // 자주 호출되는 부분에서는 로그를 최소화
+    if (n > 1000 && i % 5000 == 0) { // 주기적으로만 출력
+        std::cout << "[HeapSort] Heapifying at index " << i << ", size=" << n << "\n";
+    }
 
     if (left < n && flows[left].flowBytesPerSec > flows[largest].flowBytesPerSec) {
-        std::cout << "[HeapSort] Left child " << flows[left].flowBytesPerSec
-                  << " is larger than current largest " << flows[largest].flowBytesPerSec << "\n";
-
         largest = left;
     }
 
     if (right < n && flows[right].flowBytesPerSec > flows[largest].flowBytesPerSec) {
-        std::cout << "[HeapSort] Right child " << flows[right].flowBytesPerSec
-                  << " is larger than current largest " << flows[largest].flowBytesPerSec << "\n";
-
         largest = right;
     }
+
     if (largest != i) {
-        std::cout << "[HeapSort] Swapping " << flows[i].flowBytesPerSec
-                  << " with largest child " << flows[largest].flowBytesPerSec << "\n";
-
+        if (n > 1000 && i % 5000 == 0) { // 대규모 데이터에 대해 간헐적으로 로그 출력
+            std::cout << "[HeapSort] Swapping " << flows[i].flowBytesPerSec
+                      << " with largest child " << flows[largest].flowBytesPerSec << "\n";
+        }
         std::swap(flows[i], flows[largest]);
-
         heapify(flows, n, largest);
-    } else {
-        std::cout << "[HeapSort] No swap needed\n";
     }
 }

@@ -16,49 +16,52 @@ void MergeSort::sort(std::vector<TrafficFlow>& flows) {
 
 void MergeSort::mergeSort(std::vector<TrafficFlow>& flows, int left, int right) {
     if (left < right) {
+
         int mid = left + (right - left) / 2;
 
-        std::cout << "[MergeSort] Splitting range: [" << left << ", " << mid << "] and [" << mid + 1 << ", " << right << "]\n";
+        // 로그 출력은 주요 이벤트에서만 실행
+        if (right - left > 10000) { // 데이터 범위가 큰 경우에만 출력
+            std::cout << "[MergeSort] Splitting range: [" << left << ", " << mid << "] and [" << mid + 1 << ", " << right << "]\n";
+        }
 
 
         mergeSort(flows, left, mid);
         mergeSort(flows, mid + 1, right);
 
-        std::cout << "[MergeSort] Merging range: [" << left << ", " << mid << "] and [" << mid + 1 << ", " << right << "]\n";
+        if (right - left > 10000) { // 데이터 범위가 큰 경우에만 출력
+            std::cout << "[MergeSort] Merging range: [" << left << ", " << mid << "] and [" << mid + 1 << ", " << right << "]\n";
+        }
 
         merge(flows, left, mid, right);
     }
 }
 
 void MergeSort::merge(std::vector<TrafficFlow>& flows, int left, int mid, int right) {
-    std::cout << "[MergeSort] Merging subarrays...\n";
-
+    if (right - left > 10000) { // 범위가 큰 병합 이벤트만 출력
+        std::cout << "[MergeSort] Merging: left=" << left << ", mid=" << mid << ", right=" << right << "\n";
+    }
 
     std::vector<TrafficFlow> leftArr(flows.begin() + left, flows.begin() + mid + 1);
     std::vector<TrafficFlow> rightArr(flows.begin() + mid + 1, flows.begin() + right + 1);
 
-    std::cout << "[MergeSort] Left array size: " << leftArr.size()
-              << ", Right array size: " << rightArr.size() << "\n";
+    if (leftArr.empty() || rightArr.empty()) {
+        std::cerr << "[MergeSort] Error: One of the subarrays is empty. Check bounds!\n";
+    }
 
-
+    // 병합 로직 유지
     int i = 0, j = 0, k = left;
     while (i < leftArr.size() && j < rightArr.size()) {
         if (leftArr[i].flowBytesPerSec < rightArr[j].flowBytesPerSec) {
-            std::cout << "[MergeSort] Selecting left[" << i << "] = " << leftArr[i].flowBytesPerSec << "\n";
             flows[k++] = leftArr[i++];
         } else {
-            std::cout << "[MergeSort] Selecting right[" << j << "] = " << rightArr[j].flowBytesPerSec << "\n";
             flows[k++] = rightArr[j++];
         }
     }
-    while (i < leftArr.size()) {
-        std::cout << "[MergeSort] Adding remaining left[" << i << "] = " << leftArr[i].flowBytesPerSec << "\n";
-        flows[k++] = leftArr[i++]; }
-    while (j < rightArr.size()) {
-        std::cout << "[MergeSort] Adding remaining right[" << j << "] = " << rightArr[j].flowBytesPerSec << "\n";
-        flows[k++] = rightArr[j++]; }
+    while (i < leftArr.size()) flows[k++] = leftArr[i++];
+    while (j < rightArr.size()) flows[k++] = rightArr[j++];
 
-
-    std::cout << "[MergeSort] Merging completed.\n";
-}
+    // 병합 완료 로그
+    if (right - left > 10000) {
+        std::cout << "[MergeSort] Merging completed for range: [" << left << ", " << right << "]\n";
+    }}
 

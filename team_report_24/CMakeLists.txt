@@ -14,6 +14,7 @@ set(SOURCES
         sortAlgorithm/mergeSort.cpp
         sortAlgorithm/heapSort.cpp
         sortAlgorithm/greedySort.cpp
+        jsonConverter.cpp
 )
 
 # 헤더 파일 경로 포함

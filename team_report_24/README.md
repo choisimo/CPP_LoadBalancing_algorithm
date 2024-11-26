@@ -64,6 +64,7 @@ set(SOURCES
 
 # ?? ?? ?? ??
 include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # ?? ?? ??
 add_executable(${PROJECT_NAME} ${SOURCES})
@@ -76,4 +77,16 @@ cd build
 cmake ..
 cmake --build .
 ./CPP_LoadBalancing_algorithm
+```
+
+## JSON for Modern C++ (nlohmann/json)
+```bash
+sudo apt-get update
+sudo apt-get install nlohmann-json3-dev
+```
+## vcpkg install nlohmann-json
+[vcpkg](https://github.com/microsoft/vcpkg)
+```text
+vcpkg install nlohmann-json
+C:\vcpkg\installed\x64-windows\tools\install\include
 ```
