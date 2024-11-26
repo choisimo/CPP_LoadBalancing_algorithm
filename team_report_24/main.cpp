@@ -93,5 +93,19 @@ int main() {
     cout << "GreedySort 결과 (상위 5개):\n";
     printFlowData(greedySortFlows);
 
+
+    cout << "========================================\n";
+    // 최종 결과 확인
+    cout << "QuickSort 결과 (상위 5개):\n";
+    printFlowData(quickSortFlows);
+    cout << "MergeSort 결과 (상위 5개):\n";
+    printFlowData(mergeSortFlows);
+    cout << "HeapSort 결과 (상위 5개):\n";
+    printFlowData(heapSortFlows);
+    cout << "GreedySort 결과 (상위 5개):\n";
+    printFlowData(greedySortFlows);
+
+    cout << "========================================\n";
+    
     return 0;
 }
