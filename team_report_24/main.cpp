@@ -9,6 +9,7 @@
 #include "sortAlgorithm/heapSort.h"
 #include "sortAlgorithm/greedySort.h"
 #include <iomanip>
+#include <sys/resource.h>
 #include <chrono>
 
 vector <TrafficFlow> loadCsvData(const string& filename)
@@ -39,6 +40,11 @@ void printFlowData(const vector<TrafficFlow>& flows, int limit) {
     cout << "...\n\n";
 }
 
+void printMemoryUsage() {
+    struct rusage usage;
+    getrusage(RUSAGE_SELF, &usage);
+    cout << "Memory Usage: " << usage.ru_maxrss << "KB (" << usage.ru_maxrss / 1024 << "MB)\n";
+}
 
 int main() {
     string filename = "/workspace/CPP_LoadBalancing_algorithm/team_report_24/traffic_data_set.csv"; // CSV ???? ??? ????
@@ -104,11 +110,11 @@ int main() {
 
     cout << "========================================\n";
     // 최종 결과 확인
-    cout << "QuickSort 결과 (상위 \" << limit << \" 개):\n";
+    cout << "QuickSort 결과 (상위 " << limit << " 개):\n";
     printFlowData(quickSortFlows, limit);
-    cout << "MergeSort 결과 (상위 \" << limit << \" 개):\n";
+    cout << "MergeSort 결과 (상위 " << limit << " 개):\n";
     printFlowData(mergeSortFlows, limit);
-    cout << "HeapSort 결과 (상위 \" << limit << \" 개):\n";
+    cout << "HeapSort 결과 (상위 " << limit << " 개):\n";
     printFlowData(heapSortFlows, limit);
     cout << "GreedySort 결과 (상위 " << limit << " 개):\n";
     printFlowData(greedySortFlows, limit);
