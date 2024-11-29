@@ -41,7 +41,7 @@ void HeapSort::heapify(std::vector<TrafficFlow>& flows, int n, int i) {
     int right = 2 * i + 2;
 
     // 자주 호출되는 부분에서는 로그를 최소화
-    if (n > 1000 && i % 5000 == 0) { // 주기적으로만 출력
+    if (n > 1000 && i % 10000 == 0) { // 주기적으로만 출력
         std::cout << "[HeapSort] Heapifying at index " << i << ", size=" << n << "\n";
     }
 
@@ -54,7 +54,7 @@ void HeapSort::heapify(std::vector<TrafficFlow>& flows, int n, int i) {
     }
 
     if (largest != i) {
-        if (n > 1000 && i % 5000 == 0) { // 대규모 데이터에 대해 간헐적으로 로그 출력
+        if (n > 1000 && i % 10000 == 0) { // 대규모 데이터에 대해 간헐적으로 로그 출력
             std::cout << "[HeapSort] Swapping " << flows[i].flowBytesPerSec
                       << " with largest child " << flows[largest].flowBytesPerSec << "\n";
         }
