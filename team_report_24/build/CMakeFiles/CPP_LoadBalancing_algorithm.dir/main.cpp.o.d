@@ -296,4 +296,7 @@ CMakeFiles/CPP_LoadBalancing_algorithm.dir/main.cpp.o: \
  /workspace/CPP_LoadBalancing_algorithm/team_report_24/sortAlgorithm/mergeSort.h \
  /workspace/CPP_LoadBalancing_algorithm/team_report_24/sortAlgorithm/heapSort.h \
  /workspace/CPP_LoadBalancing_algorithm/team_report_24/sortAlgorithm/greedySort.h \
+ /usr/include/x86_64-linux-gnu/sys/resource.h \
+ /usr/include/x86_64-linux-gnu/bits/resource.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_rusage.h \
  /usr/include/c++/13/chrono
