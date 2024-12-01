@@ -18,7 +18,7 @@ struct CompareTrafficFlow {
     }
 };
 
-void GreedySort::sort(std::vector<TrafficFlow>& flows) {
+void GreedySort::sort(std::vector<TrafficFlow>& flows, bool showProcess) {
     std::cout << "[GreedySort] Starting sort using Min-Heap...\n";
 
     if (flows.empty()) {
@@ -37,7 +37,7 @@ void GreedySort::sort(std::vector<TrafficFlow>& flows) {
         minHeap.pop();
 
         // 진행률 출력 (10% 단위)
-        if (flows.size() >= 10 && i % (flows.size() / 10) == 0) {
+        if (showProcess && (flows.size() >= 10 && i % (flows.size() / 10) == 0)) {
             std::cout << "[GreedySort] Progress: " << (i * 100 / flows.size()) << "%\n";
         }
     }

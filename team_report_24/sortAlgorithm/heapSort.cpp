@@ -3,31 +3,31 @@
 #include <iostream>
 #include <algorithm>
 
-void HeapSort::sort(std::vector<TrafficFlow>& flows) {
+void HeapSort::sort(std::vector<TrafficFlow>& flows, bool showProcess) {
     std::cout << "[HeapSort] Starting sort...\n";
     auto start_time = std::chrono::high_resolution_clock::now();
     int n = flows.size();
 
     // 힙 구성 단계
     for (int i = n / 2 - 1; i >= 0; --i) {
-        if (i % 1000 == 0 || i == 0) { // 큰 단계마다 로그 출력
+        if (showProcess && (i % 1000 == 0 || i == 0)) { // 큰 단계마다 로그 출력
             std::cout << "[HeapSort] Heapifying at index " << i << " during heap construction\n";
         }
-        heapify(flows, n, i);
+        heapify(flows, n, i, showProcess);
     }
 
     // 정렬 단계
     for (int i = n - 1; i > 0; --i) {
-        if (i % 1000 == 0 || i == n - 1 || i == 1) { // 크기 변동의 주요 이벤트만 출력
+        if (showProcess &&(i % 1000 == 0 || i == n - 1 || i == 1)) { // 크기 변동의 주요 이벤트만 출력
             std::cout << "[HeapSort] Swapping root (" << flows[0].flowBytesPerSec
                       << ") with element at index " << i << " (" << flows[i].flowBytesPerSec << ")\n";
         }
         std::swap(flows[0], flows[i]);
 
-        if (i % 1000 == 0 || i == 1) {
+        if (showProcess && (i % 1000 == 0 || i == 1)) {
             std::cout << "[HeapSort] Heapifying root after swap, size reduced to " << i << "\n";
         }
-        heapify(flows, i, 0);
+        heapify(flows, i, 0, showProcess);
     }
 
     auto end_time = std::chrono::high_resolution_clock::now();
@@ -35,13 +35,13 @@ void HeapSort::sort(std::vector<TrafficFlow>& flows) {
     std::cout << "[HeapSort] Sort completed. Duration: " << duration << " ms\n";
 }
 
-void HeapSort::heapify(std::vector<TrafficFlow>& flows, int n, int i) {
+void HeapSort::heapify(std::vector<TrafficFlow>& flows, int n, int i, bool showProcess) {
     int largest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
     // 자주 호출되는 부분에서는 로그를 최소화
-    if (n > 1000 && i % 10000 == 0) { // 주기적으로만 출력
+    if (showProcess && (n > 1000 && i % 10000 == 0)) { // 주기적으로만 출력
         std::cout << "[HeapSort] Heapifying at index " << i << ", size=" << n << "\n";
     }
 
@@ -54,11 +54,11 @@ void HeapSort::heapify(std::vector<TrafficFlow>& flows, int n, int i) {
     }
 
     if (largest != i) {
-        if (n > 1000 && i % 10000 == 0) { // 대규모 데이터에 대해 간헐적으로 로그 출력
+        if (showProcess && (n > 1000 && i % 10000 == 0)) { // 대규모 데이터에 대해 간헐적으로 로그 출력
             std::cout << "[HeapSort] Swapping " << flows[i].flowBytesPerSec
                       << " with largest child " << flows[largest].flowBytesPerSec << "\n";
         }
         std::swap(flows[i], flows[largest]);
-        heapify(flows, n, largest);
+        heapify(flows, n, largest, showProcess);
     }
 }

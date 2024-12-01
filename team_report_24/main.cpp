@@ -72,14 +72,17 @@ int main() {
     string filename = "/workspace/CPP_LoadBalancing_algorithm/team_report_24/traffic_data_set.csv"; // CSV ???? ??? ????
 
     int limit = 5, chunkSize = 100000;
+    char isShow = 'N';
     cout << "enter the number of data to print: ";
     cin >> limit;
     cout << "enter the chunk size:";
     cin >> chunkSize;
     cout << endl;
+    cout << "enter Y to show sorting process, N to hide: ";
+    cin >> isShow;
 
 
-
+    bool showProcess = (isShow == 'Y' || isShow == 'y');
     // CSV 데이터 로드
     vector<TrafficFlow> flows = loadCsvData(filename);
 
@@ -87,7 +90,7 @@ int main() {
     vector<TrafficFlow> quickSortFlows = flows;
     QuickSort quickSort;
     auto quick_start = chrono::high_resolution_clock::now();
-    quickSort.sort(quickSortFlows);
+    quickSort.sort(quickSortFlows, showProcess);
     auto quick_end = chrono::high_resolution_clock::now();
     cout << "QuickSort 시간: "
          << chrono::duration_cast<chrono::milliseconds>(quick_end - quick_start).count()
@@ -99,7 +102,7 @@ int main() {
     vector<TrafficFlow> mergeSortFlows = flows;
     MergeSort mergeSort;
     auto merge_start = chrono::high_resolution_clock::now();
-    mergeSort.sort(mergeSortFlows);
+    mergeSort.sort(mergeSortFlows, showProcess);
     auto merge_end = chrono::high_resolution_clock::now();
     cout << "MergeSort 시간: "
          << chrono::duration_cast<chrono::milliseconds>(merge_end - merge_start).count()
@@ -111,7 +114,7 @@ int main() {
     vector<TrafficFlow> heapSortFlows = flows;
     HeapSort heapSort;
     auto heap_start = chrono::high_resolution_clock::now();
-    heapSort.sort(heapSortFlows);
+    heapSort.sort(heapSortFlows, showProcess);
     auto heap_end = chrono::high_resolution_clock::now();
     cout << "HeapSort 시간: "
          << chrono::duration_cast<chrono::milliseconds>(heap_end - heap_start).count()
@@ -123,7 +126,7 @@ int main() {
     vector<TrafficFlow> greedySortFlows = flows;
     GreedySort greedySort;
     auto greedy_start = chrono::high_resolution_clock::now();
-    greedySort.sort(greedySortFlows);
+    greedySort.sort(greedySortFlows, showProcess);
     auto greedy_end = chrono::high_resolution_clock::now();
     cout << "GreedySort 시간: "
          << chrono::duration_cast<chrono::milliseconds>(greedy_end - greedy_start).count()

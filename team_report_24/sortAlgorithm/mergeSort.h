@@ -9,10 +9,10 @@
 
 class MergeSort {
 public:
-    void sort(std::vector<TrafficFlow>& flows);
+    void sort(std::vector<TrafficFlow>& flows, bool showProcess);
 private:
-    void mergeSort(std::vector<TrafficFlow>& flows, int left, int right);
-    void merge(std::vector<TrafficFlow>& flows, int left, int mid, int right);
+    void mergeSort(std::vector<TrafficFlow>& flows, int left, int right, bool showProcess);
+    void merge(std::vector<TrafficFlow>& flows, int left, int mid, int right, bool showProcess);
 };
 
 #endif //CPP_LOADBALANCING_ALGORITHM_MERGESORT_H

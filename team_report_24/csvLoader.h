@@ -6,7 +6,9 @@ class csvLoader {
 private:
     string filename;
 public:
-    csvLoader(const string& f) : filename(f) {}
+    csvLoader(const string& f) : filename(f) {
+        std::cout << "loading file: " << this->filename << "..." <<  std::endl;
+    }
 
     vector<TrafficFlow> load();
     /* {

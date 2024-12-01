@@ -6,10 +6,10 @@
 
 class QuickSort {
 public:
-    void sort(std::vector<TrafficFlow>& flows);
+    void sort(std::vector<TrafficFlow>& flows, bool Process);
 private:
-    void quickSort(std::vector<TrafficFlow>& flows, int low, int high);
-    pair<int, int> partition(std::vector<TrafficFlow>& flows, int low, int high);
+    void quickSort(std::vector<TrafficFlow>& flows, int low, int high, bool showProcess);
+    pair<int, int> partition(std::vector<TrafficFlow>& flows, int low, int high, bool showProcess);
 };
 
 #endif // QUICKSORT_H

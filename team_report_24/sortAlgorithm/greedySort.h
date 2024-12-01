@@ -11,7 +11,7 @@
 
 class GreedySort {
 public:
-    void sort(std::vector<TrafficFlow> &flows);
+    void sort(std::vector<TrafficFlow> &flows, bool showProcess);
 };
 
 #endif //CPP_LOADBALANCING_ALGORITHM_GREEDYSORT_H

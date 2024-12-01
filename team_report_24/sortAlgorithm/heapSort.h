@@ -10,9 +10,9 @@
 
 class HeapSort {
 public:
-    void sort(std::vector<TrafficFlow>& flows);
+    void sort(std::vector<TrafficFlow>& flows, bool showProcess);
 private:
-    void heapify(std::vector<TrafficFlow>& flows, int n, int i);
+    void heapify(std::vector<TrafficFlow>& flows, int n, int i, bool showProcess);
 };
 
 #endif //CPP_LOADBALANCING_ALGORITHM_HEAPSORT_H
