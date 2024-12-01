@@ -1,3 +1,0 @@
-/workspace/CPP_LoadBalancing_algorithm/team_report_24/build/CMakeFiles/CPP_LoadBalancing_algorithm.dir
-/workspace/CPP_LoadBalancing_algorithm/team_report_24/build/CMakeFiles/edit_cache.dir
-/workspace/CPP_LoadBalancing_algorithm/team_report_24/build/CMakeFiles/rebuild_cache.dir
