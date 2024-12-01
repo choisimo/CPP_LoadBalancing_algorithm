@@ -19,6 +19,7 @@ set(SOURCES
 
 # 헤더 파일 경로 포함
 include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # 실행 파일 생성
 add_executable(${PROJECT_NAME} ${SOURCES})
