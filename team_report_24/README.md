@@ -118,3 +118,8 @@ sudo apt-get install nlohmann-json3-dev
 vcpkg install nlohmann-json
 C:\vcpkg\installed\x64-windows\tools\install\include
 ```
+
+## data download
+[traffic_data_set.csv](https://file.nodove.com/d/file/traffic_data_set.csv)
+## windows setting
+[windows setting](https://file.nodove.com/d/file/cmake_build_execution.pdf)

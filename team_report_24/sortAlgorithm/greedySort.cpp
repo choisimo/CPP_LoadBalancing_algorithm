@@ -6,17 +6,14 @@
 #include <vector>
 #include <chrono>
 #include <limits>
-
 #include <queue>
-
-#include <queue>
-#include <vector>
 
 struct CompareTrafficFlow {
     bool operator()(const TrafficFlow& a, const TrafficFlow& b) const {
         return a.flowBytesPerSec > b.flowBytesPerSec;  // 오름차순 정렬
     }
 };
+
 
 void GreedySort::sort(std::vector<TrafficFlow>& flows, bool showProcess) {
     std::cout << "[GreedySort] Starting sort using Min-Heap...\n";
