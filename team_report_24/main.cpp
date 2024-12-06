@@ -163,16 +163,47 @@ void printFlowDataByChunks(const vector<TrafficFlow>& flows, int chunkSize, int 
 int main() {
     std::string filename = "/workspace/CPP_LoadBalancing_algorithm/team_report_24/traffic_data_set.csv"; // CSV 파일 경로
 
-    int limit = 5, chunkSize = 100000;
-    char isShow = 'N';
-    std::cout << "Enter the number of data to print: ";
-    std::cin >> limit;
-    std::cout << "Enter the chunk size: ";
-    std::cin >> chunkSize;
-    std::cout << "Enter Y to show sorting process, N to hide: ";
-    std::cin >> isShow;
+
+    int limit = 5;       // 기본값
+    int chunkSize = 100000; // 기본값
+    char isShow = 'N';   // 기본값
+
+    std::string input;   // 입력 받는 용 임시 문자열
+
+    std::cout << "Enter the number of data to print (default: 5): ";
+    std::getline(std::cin, input);
+    if (!input.empty()) {
+        try {
+            limit = std::stoi(input);
+        } catch (...) {
+            limit = 5; // 변환 실패 시 기본값
+        }
+    }
+
+    std::cout << "Enter the chunk size (default: 100000): ";
+    std::getline(std::cin, input);
+    if (!input.empty()) {
+        try {
+            chunkSize = std::stoi(input);
+        } catch (...) {
+            chunkSize = 100000; // 변환 실패 시 기본값
+        }
+    }
+
+    std::cout << "Enter Y to show sorting process, N to hide (default: N): ";
+    std::getline(std::cin, input);
+    if (!input.empty()) {
+        // 문자열의 첫 글자 검사
+        char c = input[0];
+        if (c == 'Y' || c == 'y') {
+            isShow = 'Y';
+        } else {
+            isShow = 'N';
+        }
+    }
 
     bool showProcess = (isShow == 'Y' || isShow == 'y');
+
 
     // CSV 데이터 로드
     std::cout << "Loading CSV data...\n";
